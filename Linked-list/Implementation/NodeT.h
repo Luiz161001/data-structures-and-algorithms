@@ -11,5 +11,6 @@ class NodeT{
         //default
         NodeT();
         //parameters
+        NodeT(T item);
         NodeT(T itm, NodeT<T>* nxt, NodeT<T>* prv);  
 };

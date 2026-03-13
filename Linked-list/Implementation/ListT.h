@@ -6,7 +6,6 @@ class ListT{
     private:
         NodeT<T> *headPtr;
         NodeT<T> *tailPtr;
-        int itemCount;
     public:
     //constructors
         //default
@@ -34,6 +33,8 @@ class ListT{
             void insertBegin(const T &newEntry);
         //insert newEntry in the end of the list
             void insertEnd(const T &newEntry);
+        //sorted insert linked list 
+            void sortedInsert(const T &data);
 
     //removes
         //remove the 1st item
@@ -42,9 +43,6 @@ class ListT{
         T removeEnd();
         //remove specific item if it exists
         T remove(const T &data);
-    
-    //reverse the list
-        void reverseList();
 
     //returns true if list is empty
         bool isEmpty();
