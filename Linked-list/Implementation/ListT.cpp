@@ -1,7 +1,6 @@
 #include "ListT.h"
 #include <iostream>
 
-
 //constructors
 //default
 template <class T>
@@ -17,15 +16,25 @@ ListT<T>::~ListT(){
 }
 
 //--------------------------------------------
-//inserts
-// template <class T>
-// void ListT<T>::insert(const T &data, int pos){
-//     NodeT<T> tmp = headPtr; 
+// inserts
+template <class T>
+void ListT<T>::insert(const T &data, int pos){
+    NodeT<T> *newNode = new NodeT(data);
 
-//     //insert starting from the beginning (has better ways of doing it, do it later)
-//     while(tmp && pos>0)
-//         tmp=tmp->next;
-// }
+    if(headPtr==nullptr) 
+        headPtr=tailPtr=newNode;
+    else{
+        NodeT<T> *tmp = headPtr; 
+        //insert starting from the beginning (has better ways of doing it, do it later)
+        while(tmp && pos>0){
+            pos--;
+            tmp=tmp->next;
+        }
+        newNode->prev=tmp;
+        newNode->next= tmp->next;
+        tmp->next=newNode;
+    }   
+}
 
 template <class T>
 void ListT<T>::insertBegin(const T &newEntry){
@@ -53,6 +62,40 @@ void ListT<T>::insertEnd(const T &newEntry){
 // void ListT<T>::sortedInsert(const T &data){
 
 // }
+
+
+//--------------------------------------------
+//displays
+template <class T>
+void ListT<T>::displayAscending(){
+    NodeT<T> *tmp = headPtr;
+    while(tmp){
+        cout<<tmp->item<<" ";
+        tmp=tmp->next;
+    }
+    cout<<"\n";
+}
+
+template <class T>
+void ListT<T>::displayDescending(){
+    NodeT<T> *tmp = tailPtr;
+    while(tmp){
+        cout<<tmp->item<<" ";
+        tmp=tmp->prev
+    }
+    cout<<"\n";
+}
+
+template <class T>
+void ListT<T>::displayOne(int idx){
+    if(idx>getCurrentSize() || idx<=0)
+        throw std::invalid_argument("Index out of range!");
+    NodeT<T> *tmp = headPtr;
+    for(int i=0; i<idx; i++)
+        tmp=tmp->next;
+    cout << tmp->item < endl;
+}
+
 
 //--------------------------------------------
 //searches
