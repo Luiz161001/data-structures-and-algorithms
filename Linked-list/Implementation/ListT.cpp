@@ -3,42 +3,55 @@
 
 //constructors
 //default
-template <class T>
+template <typename T>
 ListT<T>::ListT() : headPtr(nullptr), tailPtr(nullptr){}
 
 //parameter
-template <class T>
-ListT<T>::ListT(const ListT &list){}
-//destructor
-template <class T>
-ListT<T>::~ListT(){
+// template <typename T>
+// ListT<T>::ListT(const ListT &list){}
 
-}
+//destructor
+// template <typename T>
+// ListT<T>::~ListT(){
+
+// }
 
 //--------------------------------------------
 // inserts
-template <class T>
-void ListT<T>::insert(const T &data, int pos){
-    NodeT<T> *newNode = new NodeT(data);
+template <typename T>
+bool ListT<T>::insert(const T &data, int pos){
+    if(pos < 0) return false;
 
-    if(headPtr==nullptr) 
-        headPtr=tailPtr=newNode;
-    else{
-        NodeT<T> *tmp = headPtr; 
-        //insert starting from the beginning (has better ways of doing it, do it later)
-        while(tmp && pos>0){
-            pos--;
-            tmp=tmp->next;
-        }
-        newNode->prev=tmp;
-        newNode->next= tmp->next;
-        tmp->next=newNode;
-    }   
+    if(pos==0){
+        NodeT<T> *newNode = new NodeT<T>(data, nullptr, headPtr);
+        if(headPtr)
+            headPtr->prev = newNode;
+        headPtr = newNode;
+        return true;
+    }
+
+    NodeT<T> *tmp = headPtr;
+    int index = 0;
+
+    while(tmp && index < pos - 1){
+        tmp=tmp->next;
+        index++;
+    }
+
+    if(tmp == nullptr) return false;
+
+    NodeT<T> *newNode = new NodeT<T>(data, tmp, tmp->next);
+
+    if(tmp->next) 
+        tmp->next->prev = newNode;
+
+    tmp->next = newNode;
+    return true;
 }
 
-template <class T>
+template <typename T>
 void ListT<T>::insertBegin(const T &newEntry){
-    NodeT<T> *newNode = new NodeT(newEntry,headPtr,nullptr);
+    NodeT<T> *newNode = new NodeT<T>(newEntry,headPtr,nullptr);
     if(headPtr==nullptr)
         headPtr=tailPtr=newNode;
     else{
@@ -47,9 +60,9 @@ void ListT<T>::insertBegin(const T &newEntry){
     }
 }
 
-template <class T>
+template <typename T>
 void ListT<T>::insertEnd(const T &newEntry){
-    NodeT<T> *newNode = new NodeT(newEntry,nullptr,tailPtr);
+    NodeT<T> *newNode = new NodeT<T>(newEntry,nullptr,tailPtr);
     if(headPtr==nullptr)
         headPtr=tailPtr=newNode;
     else{
@@ -58,15 +71,33 @@ void ListT<T>::insertEnd(const T &newEntry){
     }
 }
 
-// template <class T>
+// template <typename T>
 // void ListT<T>::sortedInsert(const T &data){
 
 // }
 
 
 //--------------------------------------------
+//removes
+// template <typename T>
+// T ListT<T>::removeBegin(){
+//     if(isEmpty())
+//         throw std::invalid_argument("List is empty!");
+    
+// }
+
+// template <typename T>
+// T ListT<T>::removeEnd(){
+
+// }
+
+// template <typename T>
+// T remove(const T &data);
+
+
+//--------------------------------------------
 //displays
-template <class T>
+template <typename T>
 void ListT<T>::displayAscending(){
     NodeT<T> *tmp = headPtr;
     while(tmp){
@@ -76,7 +107,7 @@ void ListT<T>::displayAscending(){
     cout<<"\n";
 }
 
-template <class T>
+template <typename T>
 void ListT<T>::displayDescending(){
     NodeT<T> *tmp = tailPtr;
     while(tmp){
@@ -86,7 +117,7 @@ void ListT<T>::displayDescending(){
     cout<<"\n";
 }
 
-template <class T>
+template <typename T>
 void ListT<T>::displayOne(int idx){
     if(idx>getCurrentSize() || idx<=0)
         throw std::invalid_argument("Index out of range!");
@@ -99,7 +130,7 @@ void ListT<T>::displayOne(int idx){
 
 //--------------------------------------------
 //searches
-template <class T>
+template <typename T>
 bool ListT<T>::searchItem(const T &data) const{
     NodeT<T> tmp = headPtr;
     while(tmp){
@@ -111,12 +142,12 @@ bool ListT<T>::searchItem(const T &data) const{
 
 //--------------------------------------------
 //Utility Functions
-template <class T>
+template <typename T>
 bool ListT<T>::isEmpty(){
     return headPtr==nullptr;
 }
     
-template <class T>
+template <typename T>
 int ListT<T>::getCurrentSize(){
     int size = 0;
     NodeT<T> tmp = headPtr;

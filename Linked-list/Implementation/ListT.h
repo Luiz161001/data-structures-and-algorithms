@@ -1,7 +1,7 @@
 #include "NodeT.cpp"
 #include "ListIteratorT.cpp"
 
-template<class T>
+template<typename T>
 class ListT{
     private:
         NodeT<T> *headPtr;
@@ -28,7 +28,7 @@ class ListT{
 
     //inserts
         //insert in the right position
-            void insert(const T &data, int pos);
+            bool insert(const T &data, int pos);
         //insert newEntry in the begining of the list
             void insertBegin(const T &newEntry);
         //insert newEntry in the end of the list
