@@ -1,7 +1,7 @@
 #pragma once
 #include <iterator>
+#include <stdexcept>
 #include "NodeT.h"
-
 
 template <class T>
 class ListIteratorT{

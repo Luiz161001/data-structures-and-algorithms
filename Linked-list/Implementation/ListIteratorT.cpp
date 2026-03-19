@@ -1,23 +1,23 @@
 #include "ListIteratorT.h"
 
 template <class T> 
-ListIteratorT<T>::ListIteratorT() : currentPtr(nullptr){};
+ListIteratorT<T>::ListIteratorT() : currentPtr(nullptr){}
 
 template <class T>
-ListIteratorT<T>::ListIteratorT(NodeT<T> *curPtr) : currentPtr(curPtr){};
+ListIteratorT<T>::ListIteratorT(NodeT<T> *curPtr) : currentPtr(curPtr){}
 
 template <class T>
 ListIteratorT<T> ListIteratorT<T>::operator++(){
     if(currentPtr)
         currentPtr=currentPtr->next;
-    return currentPtr;
+    return *this;
 }
 
 template <class T> 
 T &ListIteratorT<T>::operator*(){
     if(currentPtr)
         return currentPtr->item;
-    throw std::out_of_range("Dereferencing an invalid operator");
+    throw std::out_of_range("Dereferencing an invalid iterator");
 }
 
 template <class T>

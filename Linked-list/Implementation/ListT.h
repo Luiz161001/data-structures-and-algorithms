@@ -33,8 +33,6 @@ class ListT{
             void insertBegin(const T &newEntry);
         //insert newEntry in the end of the list
             void insertEnd(const T &newEntry);
-        //sorted insert linked list 
-            void sortedInsert(const T &data);
 
     //removes
         //remove the 1st item
@@ -45,13 +43,13 @@ class ListT{
         T remove(const T &data);
 
     //returns true if list is empty
-        bool isEmpty();
+        bool isEmpty() const;
     
     //return current size of the list
-        int getCurrentSize();
+        int getCurrentSize() const;
 
     //copy the list
-        void operator=(const ListT &list);
+        ListT<T>& operator=(const ListT &list);
 
     //iterators
         //set the begin of the list
