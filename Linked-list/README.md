@@ -13,7 +13,7 @@ From here, I’m solving problems to reinforce these concepts and improve proble
 ## Implementation ⚙️
 
 - Doubly Linked List
-  - Node structure (prev, next, value)
+  - Node structure (item, next, prev)
   - Insertion (head, tail, position)
   - Deletion
   - Traversal (forward & backward)
