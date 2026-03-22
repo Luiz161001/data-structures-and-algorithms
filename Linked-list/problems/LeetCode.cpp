@@ -1,3 +1,5 @@
+#include <unordered_set>
+
 struct ListNode {
     int val;
     ListNode *next;
@@ -17,4 +19,22 @@ ListNode* reverseList(ListNode* head) {
         curr=next;
     }
     return curr;
+}
+
+// 141 Linked List Cycle
+/**
+ * This solution was not the most efficient one
+ * It was the one that came up faster to my mind.
+ * I will optimize it later
+ */
+bool hasCycle(ListNode *head) {
+    ListNode *tmp = head;
+    std::unordered_set<ListNode*> set;
+    while(tmp){
+        if(set.find(tmp->next)!=set.end())
+            return true;
+        set.insert(tmp);
+        tmp=tmp->next;
+    }
+    return false;
 }
