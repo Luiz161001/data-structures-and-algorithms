@@ -62,3 +62,18 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     delete newList;
     return answer; 
 }
+
+// 83 Remove Duplicates from Sorted List
+ListNode* deleteDuplicates(ListNode* head) {
+    ListNode *newList= new ListNode(head->val), *dummie=newList;
+    int cur = head->val;
+    while(head){
+        if(head->val!=cur){
+            cur = head->val;
+            dummie->next= new ListNode(cur);
+            dummie=dummie->next;
+        }
+        head=head->next;
+    }
+    return newList;
+}
