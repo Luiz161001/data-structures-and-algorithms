@@ -8,6 +8,25 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+class Node {
+    public:
+    int val;
+    Node* next;
+
+    Node() {}
+
+    Node(int _val) {
+        val = _val;
+        next = NULL;
+    }
+
+    Node(int _val, Node* _next) {
+        val = _val;
+        next = _next;
+    }
+};
+
+
 // 206 Reverse Linked List
 ListNode* reverseList(ListNode* head) {
     ListNode *curr=head, *prev=nullptr, *next=head;
@@ -76,4 +95,23 @@ ListNode* deleteDuplicates(ListNode* head) {
         head=head->next;
     }
     return newList;
+}
+
+// 708 Insert into a Sorted Circular LinkedList
+Node* insert(Node* head, int insertVal) {
+    if(!head){
+        Node *newList = new Node(insertVal);
+        newList->next=newList;
+        return newList;
+    }
+    Node *tmp = head;
+    while(tmp->next!=head){
+        if(tmp->val > tmp->next->val){
+            if(insertVal >= tmp->val || insertVal <= tmp->next->val) break;
+        }
+        if(tmp->val <= insertVal && insertVal <= tmp->next->val) break;  
+        tmp = tmp->next;
+    }
+    tmp->next = new Node(insertVal, tmp->next);
+    return head;
 }
