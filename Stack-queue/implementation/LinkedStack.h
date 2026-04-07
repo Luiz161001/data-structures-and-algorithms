@@ -4,7 +4,7 @@
 template <typename T>
 class LinkedStack{
 public:
-    LinkedStack();                          // constructor
+    LinkedStack();                    // constructor
     LinkedStack(LinkedStack &aStack); // copy constructor
 
     int size() const;        // returns the number of elements in the stack
@@ -13,6 +13,9 @@ public:
     void push(const T &ele); // adds a new item to the top of the stack
     void pop();              // removes the top of the stack if it is not empty, otherwise throws an exception or prints an error message
     ~LinkedStack();          // destructor
+
+    void reverseDisplay();
+    void deleteItem(const T &givenItem);
 
 private:
     NodeT<T> *topPtr; // pointer to top of stack

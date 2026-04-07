@@ -2,14 +2,6 @@
 #include <limits>
 #include "LinkedStack.cpp"
 
-template <typename T>
-void reverseDisplay(LinkedStack<T> &aStack){
-    
-}
-template <typename T>
-void deleteItem(LinkedStack<T> &aStack, const T &givenItem){
-}
-
 int main()
 {
     LinkedStack<int> aStack;
@@ -31,7 +23,7 @@ int main()
     // TASK 1----------------------------------------------------------------
     // display the elements of stack in reverse order
     //-----------------------------------------------------------------------
-    reverseDisplay(aStack); // It should display the elements in this order 10 20 30 30 40 40 40 50
+    aStack.reverseDisplay(); // It should display the elements in this order 10 20 30 30 40 40 40 50
 
     std::cout << "\nAfter displaying the elements in the reverse order:\n";
     std::cout << "The size of the original stack \"aStack\" is:  " << aStack.size() << std::endl;
@@ -43,7 +35,7 @@ int main()
     std::cout << "\nNext, going to remove all occurences of a given item from \"aStack\":\n";
     std::cout << "\nEnter the item whose all occurences are to be deleted: ";
     std::cin >> givenItem;
-    deleteItem(aStack, givenItem);
+    aStack.deleteItem(givenItem);
     std::cout << "\nThe size of the original stack \"aStack\":  after deleting all occurences of " << givenItem << " are:  " << aStack.size() << std::endl;
 
 
