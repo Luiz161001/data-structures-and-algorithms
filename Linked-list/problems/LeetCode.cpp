@@ -115,3 +115,19 @@ Node* insert(Node* head, int insertVal) {
     tmp->next = new Node(insertVal, tmp->next);
     return head;
 }
+
+ListNode* swapPairs(ListNode* head) {
+    ListNode *tmp = head;
+    while(tmp){ 
+        if(tmp && tmp->next){
+            int temp = tmp->val;
+            tmp->val = tmp->next->val;
+            tmp->next->val = temp;
+        }
+        if(tmp->next)
+            tmp=tmp->next->next;
+        else
+            tmp=tmp->next;
+    }
+    return head;
+}
