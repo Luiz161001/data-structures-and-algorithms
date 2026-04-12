@@ -116,6 +116,8 @@ Node* insert(Node* head, int insertVal) {
     return head;
 }
 
+
+// 24 Swap Nodes in Pairs
 ListNode* swapPairs(ListNode* head) {
     ListNode *tmp = head;
     while(tmp){ 
@@ -129,5 +131,35 @@ ListNode* swapPairs(ListNode* head) {
         else
             tmp=tmp->next;
     }
+    return head;
+}
+
+// 19 Remove Nth Node From End of List
+// It is not working to pass all of the tests
+// Check it out tomorrow
+ListNode* removeNthFromEnd(ListNode* head, int n) {
+    if(!head) return nullptr;
+
+    if(n==1 && !head->next){
+        delete head;
+        return nullptr;
+    }
+    
+    ListNode *tmp = head;
+    int count = 1;
+    while(tmp){
+        count++;
+        tmp = tmp->next;
+    }
+
+    tmp = head;
+    for(int i = 1; i < count - n - 1 && tmp; i++){
+        tmp=tmp->next;
+    }
+    ListNode *deleted = tmp->next;
+    if(!deleted) return head;
+
+    tmp->next = deleted->next;
+    delete deleted;
     return head;
 }
