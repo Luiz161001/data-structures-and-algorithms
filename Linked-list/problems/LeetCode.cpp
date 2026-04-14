@@ -135,31 +135,21 @@ ListNode* swapPairs(ListNode* head) {
 }
 
 // 19 Remove Nth Node From End of List
-// It is not working to pass all of the tests
-// Check it out tomorrow
 ListNode* removeNthFromEnd(ListNode* head, int n) {
-    if(!head) return nullptr;
-
-    if(n==1 && !head->next){
-        delete head;
-        return nullptr;
-    }
-    
-    ListNode *tmp = head;
-    int count = 1;
+    ListNode *dummy = new ListNode(0);
+    dummy->next = head;
+    int len=0;
+    ListNode *tmp=head;
     while(tmp){
-        count++;
-        tmp = tmp->next;
-    }
-
-    tmp = head;
-    for(int i = 1; i < count - n - 1 && tmp; i++){
+        len++;
         tmp=tmp->next;
     }
-    ListNode *deleted = tmp->next;
-    if(!deleted) return head;
-
-    tmp->next = deleted->next;
-    delete deleted;
-    return head;
+    len-=n;
+    tmp=dummy;
+    while(len>0){
+        len--;
+        tmp=tmp->next;
+    }
+    tmp->next=tmp->next->next;
+    return dummy->next;
 }
