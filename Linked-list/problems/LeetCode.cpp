@@ -153,3 +153,23 @@ ListNode* removeNthFromEnd(ListNode* head, int n) {
     tmp->next=tmp->next->next;
     return dummy->next;
 }
+
+// 82 Remove Duplicates from Sorted List II
+// Reviewwww
+ListNode* deleteDuplicates(ListNode* head) {
+    ListNode *sentinel = new ListNode(0,head);
+    ListNode *pred = sentinel;
+    while(head){
+        if(head->next && head->val==head->next->val){
+    while(head->next && head->val==head->next->val){
+        head=head->next;
+    }
+    pred->next=head->next;
+        }
+        else{
+    pred=pred->next;
+        }
+        head=head->next;
+    }
+    return sentinel->next;
+}
