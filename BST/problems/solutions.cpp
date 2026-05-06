@@ -1,3 +1,5 @@
+#include <iostream>
+
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -23,4 +25,22 @@ bool isSubtree(TreeNode *root, TreeNode *subRoot){
     return isSame(root, subRoot) ||
         isSubtree(root->left, subRoot) ||
         isSubtree(root->right, subRoot);
+}
+
+// 543. Diameter of Binary Tree
+int diameter;
+int longestPath(TreeNode* node){
+    if(!node) return -1;
+
+    int leftPath = longestPath(node->left);
+    int rightPath = longestPath(node->right);
+
+    diameter = std::max(diameter, leftPath + rightPath + 2);
+
+    return std::max(leftPath, rightPath) + 1;
+}
+int diameterOfBinaryTree(TreeNode* root) {
+    diameter = 0;
+    longestPath(root);
+    return diameter;
 }
